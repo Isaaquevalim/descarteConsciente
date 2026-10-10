@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoPontos | Descarte consciente</title>
+  <meta name="description" content="Aprenda a descartar entulho, madeira, plásticos e outros materiais do jeito certo e encontre o Ecoponto mais próximo." />
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║ [ INSIRA AQUI O FAVICON DO PROJETO (.png ou .ico)          ] ║
+  ║ Exemplo: <link rel="icon" href="/static/img/favicon.png" /> ║
+  ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet (mapa) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Tailwind via CDN + paleta ecológica -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            floresta: { 50: "#f1f7ee", 100: "#dfeed8", 500: "#4a8a3c", 600: "#3a7030", 700: "#2f5a28", 900: "#1b3418" },
+            terra:    { 100: "#f0e6da", 300: "#d2b48c", 500: "#a67c52", 700: "#6f4e2e" },
+            offwhite: "#faf8f3",
+          },
+          fontFamily: {
+            titulo: ["Fraunces", "serif"],
+            corpo: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body class="bg-offwhite text-floresta-900 font-corpo antialiased">
+
+  <!-- ============ MENU ============ -->
+  <header class="sticky top-0 z-[1000] bg-offwhite/90 backdrop-blur border-b border-terra-100">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="#inicio" class="flex items-center gap-2 font-titulo text-xl font-bold text-floresta-700">
+        <!--
+        ████████████████████████████████████████████████████████████
+        ██  [ INSIRA AQUI A LOGO PEQUENA DO MENU (32x32 a 40px) ] ██
+        ██  Troque o emoji abaixo por: <img src="/static/img/logo.png" class="h-8" alt="Logo EcoPontos"> ██
+        ████████████████████████████████████████████████████████████
+        -->
+        <span aria-hidden="true">🌱</span> EcoPontos
+      </a>
+      <ul class="hidden md:flex gap-6 text-sm font-medium">
+        <li><a class="hover:text-floresta-500" href="#educacao">Como descartar</a></li>
+        <li><a class="hover:text-floresta-500" href="#mapa">Mapa</a></li>
+        <li><a class="hover:text-floresta-500" href="#cadastro">Cadastrar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ 1. HERO ============ -->
+    <section id="inicio" class="relative overflow-hidden bg-floresta-900 text-offwhite">
+
+      <!--
+      ████████████████████████████████████████████████████████████████████████
+      ██                                                                    ██
+      ██  [ INSIRA AQUI A IMAGEM DE FUNDO SOBRE RECICLAGEM / NATUREZA ]     ██
+      ██  RECOMENDADO: foto horizontal, mínimo 1920x1080, tons verdes.      ██
+      ██  Busque no Unsplash: "recycling", "forest", "sustainability".      ██
+      ██  Como usar: troque o src abaixo pelo link ou caminho da imagem.    ██
+      ██                                                                    ██
+      ████████████████████████████████████████████████████████████████████████
+      -->
+      <img src="" alt="" aria-hidden="true"
+           class="absolute inset-0 w-full h-full object-cover opacity-30" />
+
+      <div class="relative max-w-6xl mx-auto px-4 py-24 md:py-36 text-center">
+
+        <!--
+        ████████████████████████████████████████████████████████████████████
+        ██                                                                ██
+        ██  [ INSIRA AQUI A LOGO PRINCIPAL DO PROJETO (PNG transparente) ]██
+        ██  RECOMENDADO: 160x160px ou maior, versão clara para fundo escuro.██
+        ██  Exemplo: <img src="/static/img/logo-hero.png" class="mx-auto h-28 mb-6" alt="Logo"> ██
+        ██                                                                ██
+        ████████████████████████████████████████████████████████████████████
+        -->
+        <div class="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full border-2 border-dashed border-floresta-100/60 text-xs text-floresta-100/80">
+          SUA LOGO AQUI
+        </div>
+
+        <h1 class="font-titulo text-4xl md:text-6xl font-bold leading-tight">
+          Cada resíduo no lugar certo<br class="hidden md:block" /> transforma a nossa cidade.
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-lg text-floresta-100">
+          Aprenda a descartar entulho, madeira, plásticos e muito mais do jeito correto,
+          e encontre o Ecoponto mais perto de você.
+        </p>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <a href="#mapa" class="rounded-full bg-floresta-500 px-8 py-3 font-semibold shadow-lg hover:bg-floresta-600 transition">
+            Ver Ecopontos no mapa
+          </a>
+          <a href="#educacao" class="rounded-full border border-offwhite/60 px-8 py-3 font-semibold hover:bg-offwhite/10 transition">
+            Aprender a descartar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. EDUCAÇÃO AMBIENTAL ============ -->
+    <section id="educacao" class="max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-12">
+        <h2 class="font-titulo text-3xl md:text-4xl font-bold">Como descartar cada material</h2>
+        <p class="mt-3 text-floresta-700">Pequenas atitudes evitam alagamentos, focos de doenças e poluição.</p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- CARD: ENTULHO -->
+        <article class="card-educacao overflow-hidden rounded-2xl bg-white shadow-md border border-terra-100">
+          <!--
+          ██████████████████████████████████████████████████████████████
+          ██  [ INSIRA AQUI A FOTO/ILUSTRAÇÃO DE ENTULHO ]            ██
+          ██  RECOMENDADO: 600x400px. Troque o div abaixo por um <img>.██
+          ██████████████████████████████████████████████████████████████
+          -->
+          <div class="h-44 bg-terra-100 flex items-center justify-center text-5xl">🧱</div>
+          <div class="p-6">
+            <h3 class="font-titulo text-xl font-semibold">Entulho de obra</h3>
+            <p class="mt-2 text-sm text-floresta-700">Tijolos, concreto, azulejos e restos de reforma.</p>
+            <ul class="mt-4 space-y-1 text-sm list-disc list-inside">
+              <li>Separe de lixo comum e de madeira.</li>
+              <li>Leve a um Ecoponto ou contrate caçamba licenciada.</li>
+              <li>Nunca descarte em terrenos baldios ou calçadas.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CARD: MADEIRA -->
+        <article class="card-educacao overflow-hidden rounded-2xl bg-white shadow-md border border-terra-100">
+          <!--
+          ██████████████████████████████████████████████████████████████
+          ██  [ INSIRA AQUI A FOTO/ILUSTRAÇÃO DE MADEIRA / MÓVEIS ]   ██
+          ██  RECOMENDADO: 600x400px.                                 ██
+          ██████████████████████████████████████████████████████████████
+          -->
+          <div class="h-44 bg-terra-100 flex items-center justify-center text-5xl">🪵</div>
+          <div class="p-6">
+            <h3 class="font-titulo text-xl font-semibold">Madeira e móveis</h3>
+            <p class="mt-2 text-sm text-floresta-700">Paletes, portas, armários e restos de marcenaria.</p>
+            <ul class="mt-4 space-y-1 text-sm list-disc list-inside">
+              <li>Retire pregos, dobradiças e vidros.</li>
+              <li>Móvel em bom estado? Considere doar.</li>
+              <li>Madeira pode virar energia ou nova matéria-prima.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CARD: PLÁSTICO -->
+        <article class="card-educacao overflow-hidden rounded-2xl bg-white shadow-md border border-terra-100">
+          <!--
+          ██████████████████████████████████████████████████████████████
+          ██  [ INSIRA AQUI A FOTO/ILUSTRAÇÃO DE PLÁSTICOS ]          ██
+          ██  RECOMENDADO: 600x400px.                                 ██
+          ██████████████████████████████████████████████████████████████
+          -->
+          <div class="h-44 bg-terra-100 flex items-center justify-center text-5xl">♻️</div>
+          <div class="p-6">
+            <h3 class="font-titulo text-xl font-semibold">Plásticos</h3>
+            <p class="mt-2 text-sm text-floresta-700">Garrafas, embalagens, baldes e sacolas.</p>
+            <ul class="mt-4 space-y-1 text-sm list-disc list-inside">
+              <li>Enxágue para tirar restos de comida.</li>
+              <li>Amasse para ocupar menos espaço.</li>
+              <li>Entregue na coleta seletiva ou no Ecoponto.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!--
+        ██████████████████████████████████████████████████████████████████
+        ██  [ ADICIONE MAIS CARDS AQUI, copiando o modelo acima ]       ██
+        ██  Sugestões: Metal, Vidro, Papel/Papelão, Podas de jardim,    ██
+        ██  Eletrônicos, Óleo de cozinha.                               ██
+        ██████████████████████████████████████████████████████████████████
+        -->
+      </div>
+    </section>
+
+    <!-- ============ 3. MAPA INTERATIVO ============ -->
+    <section id="mapa" class="bg-floresta-50 py-20">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <h2 class="font-titulo text-3xl md:text-4xl font-bold">Encontre um Ecoponto</h2>
+          <p class="mt-3 text-floresta-700">Clique nos pinos para ver horários, materiais aceitos e quanto espaço ainda há.</p>
+        </div>
+
+        <!-- Aqui o Leaflet desenha o mapa (script.js) -->
+        <div id="mapa-ecopontos"
+             class="h-[480px] w-full rounded-2xl shadow-lg border border-terra-300 z-0"
+             role="application" aria-label="Mapa de Ecopontos"></div>
+
+        <p id="mapa-status" class="mt-3 text-center text-sm text-floresta-700" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ============ 4. CADASTRO ============ -->
+    <section id="cadastro" class="max-w-3xl mx-auto px-4 py-20">
+      <div class="text-center mb-10">
+        <h2 class="font-titulo text-3xl md:text-4xl font-bold">Cadastre um Ecoponto</h2>
+        <p class="mt-3 text-floresta-700">Conhece um ponto de descarte? Ajude sua comunidade adicionando ele ao mapa.</p>
+      </div>
+
+      <form id="form-ecoponto" class="space-y-6 rounded-2xl bg-white p-6 md:p-8 shadow-md border border-terra-100" novalidate>
+
+        <div>
+          <label for="nome" class="block text-sm font-semibold mb-1">Nome do Ecoponto</label>
+          <input id="nome" name="nome" type="text" required maxlength="150"
+                 class="campo" placeholder="Ex.: Ecoponto Vila Nova" />
+        </div>
+
+        <div>
+          <label for="endereco" class="block text-sm font-semibold mb-1">Endereço</label>
+          <div class="flex gap-2">
+            <input id="endereco" name="endereco" type="text" required maxlength="150"
+                  class="campo min-w-0" placeholder="Rua, número, bairro, cidade" />
+            <button type="button" id="btn-buscar-endereco"
+                    class="shrink-0 rounded-xl bg-floresta-500 px-4 text-sm font-semibold text-white hover:bg-floresta-600 transition disabled:opacity-60">
+              🔍 Buscar no mapa
+            </button>
+          </div>
+            <p id="busca-mensagem" class="mt-1 text-sm" aria-live="polite"></p>
+        </div>
+
+        <div>
+          <label for="horario" class="block text-sm font-semibold mb-1">Horário de funcionamento</label>
+          <input id="horario" name="horario" type="text" required maxlength="150"
+                 class="campo" placeholder="Ex.: Seg a Sex, 8h às 17h" />
+        </div>
+
+        <fieldset>
+          <legend class="block text-sm font-semibold mb-2">Materiais aceitos</legend>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+            <label class="chip"><input type="checkbox" name="materiais" value="Entulho" /> Entulho</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Madeira" /> Madeira</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Plástico" /> Plástico</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Metal" /> Metal</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Vidro" /> Vidro</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Papel e Papelão" /> Papel e Papelão</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Podas" /> Podas</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Eletrônicos" /> Eletrônicos</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Óleo de Cozinha" /> Óleo de Cozinha</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Pilhas e Baterias" /> Pilhas e Baterias</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Lâmpadas" /> Lâmpadas</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Pneus" /> Pneus</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Móveis" /> Móveis</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Colchões" /> Colchões</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Roupas e Têxteis" /> Roupas e Têxteis</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Isopor" /> Isopor</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Gesso" /> Gesso</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Tintas e Solventes" /> Tintas e Solventes</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Embalagens Longa Vida" /> Embalagens Longa Vida</label>
+            <label class="chip"><input type="checkbox" name="materiais" value="Eletrodomésticos" /> Eletrodomésticos</label>
+          </div>
+        </fieldset>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label for="tipo" class="block text-sm font-semibold mb-1">Tipo</label>
+            <select id="tipo" name="tipo" required class="campo">
+              <option value="">Selecione...</option>
+              <option value="Público">Público</option>
+              <option value="Privado">Privado</option>
+            </select>
+          </div>
+          <div>
+            <label for="volume_preenchido" class="block text-sm font-semibold mb-1">
+              Volume preenchido: <span id="volume-valor">0</span>%
+            </label>
+            <input id="volume_preenchido" name="volume_preenchido" type="range"
+                   min="0" max="100" value="0" class="w-full accent-floresta-500" />
+          </div>
+        </div>
+
+        <!-- Localização: preenchida ao clicar no mapa (script.js) -->
+        <div>
+          <p class="block text-sm font-semibold mb-1">Localização no mapa</p>
+          <p class="text-sm text-floresta-700 mb-2">Digite o endereço e clique em "Buscar no mapa", ou clique direto no mapa. Você pode arrastar o pino para ajustar.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <input id="latitude"  name="latitude"  type="text" readonly class="campo bg-offwhite" placeholder="Latitude" />
+            <input id="longitude" name="longitude" type="text" readonly class="campo bg-offwhite" placeholder="Longitude" />
+          </div>
+        </div>
+
+        <p id="form-mensagem" class="text-sm font-medium" role="alert" aria-live="polite"></p>
+
+        <button type="submit"
+                class="w-full rounded-full bg-floresta-500 py-3 font-semibold text-white shadow hover:bg-floresta-600 transition">
+          Cadastrar Ecoponto
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer class="bg-floresta-900 text-floresta-100 py-10 text-center text-sm">
+    <!--
+    ████████████████████████████████████████████████████████████████
+    ██  [ INSIRA AQUI A LOGO DA UNIVERSIDADE / PROJETO EXTENSIONISTA ]██
+    ██  RECOMENDADO: versão clara (branca), altura ~48px.            ██
+    ████████████████████████████████████████████████████████████████
+    -->
+    <p>Projeto de Extensão Universitária · Descarte consciente</p>
+    <p class="mt-1 opacity-70">Mapa por © OpenStreetMap contributors</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
