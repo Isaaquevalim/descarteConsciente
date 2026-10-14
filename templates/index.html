@@ -6,13 +6,8 @@
   <title>EcoPontos | Descarte consciente</title>
   <meta name="description" content="Aprenda a descartar entulho, madeira, plásticos e outros materiais do jeito certo e encontre o Ecoponto mais próximo." />
 
-  <!--
-  ╔══════════════════════════════════════════════════════════════╗
-  ║ [ INSIRA AQUI O FAVICON DO PROJETO (.png ou .ico)          ] ║
-  ║ Exemplo: <link rel="icon" href="/static/img/favicon.png" /> ║
-  ╚══════════════════════════════════════════════════════════════╝
-  -->
-
+  
+  <link rel="icon" href="{{ url_for('static', filename='descarte/static/img/favicon.png') }}" />
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -49,13 +44,13 @@
   <header class="sticky top-0 z-[1000] bg-offwhite/90 backdrop-blur border-b border-terra-100">
     <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
       <a href="#inicio" class="flex items-center gap-2 font-titulo text-xl font-bold text-floresta-700">
+      <img src="/static/img/favicon.png" class="h-10" alt="Logo EcoPontos"> EcoPontos
         <!--
         ████████████████████████████████████████████████████████████
         ██  [ INSIRA AQUI A LOGO PEQUENA DO MENU (32x32 a 40px) ] ██
         ██  Troque o emoji abaixo por: <img src="/static/img/logo.png" class="h-8" alt="Logo EcoPontos"> ██
         ████████████████████████████████████████████████████████████
         -->
-        <span aria-hidden="true">🌱</span> EcoPontos
       </a>
       <ul class="hidden md:flex gap-6 text-sm font-medium">
         <li><a class="hover:text-floresta-500" href="#educacao">Como descartar</a></li>
@@ -80,8 +75,9 @@
       ██                                                                    ██
       ████████████████████████████████████████████████████████████████████████
       -->
-      <img src="" alt="" aria-hidden="true"
-           class="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1920&q=80" 
+    F alt="" aria-hidden="true"
+     class="absolute inset-0 w-full h-full object-cover opacity-30" />
 
       <div class="relative max-w-6xl mx-auto px-4 py-24 md:py-36 text-center">
 
@@ -94,9 +90,7 @@
         ██                                                                ██
         ████████████████████████████████████████████████████████████████████
         -->
-        <div class="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full border-2 border-dashed border-floresta-100/60 text-xs text-floresta-100/80">
-          SUA LOGO AQUI
-        </div>
+        <img src="/static/img/favicon.png" class="mx-auto h-28 mb-6" alt="Logo">
 
         <h1 class="font-titulo text-4xl md:text-6xl font-bold leading-tight">
           Cada resíduo no lugar certo<br class="hidden md:block" /> transforma a nossa cidade.
@@ -186,6 +180,47 @@
           </div>
         </article>
 
+        <!-- CARD: ELETRÔNICOS -->
+        <article class="card-educacao overflow-hidden rounded-2xl bg-white shadow-md border border-terra-100">
+          <div class="h-44 bg-terra-100 flex items-center justify-center text-5xl">🔌</div>
+          <div class="p-6">
+            <h3 class="font-titulo text-xl font-semibold">Eletrônicos e pilhas</h3>
+            <p class="mt-2 text-sm text-floresta-700">Celulares antigos, cabos, computadores, pilhas e baterias.</p>
+            <ul class="mt-4 space-y-1 text-sm list-disc list-inside">
+              <li>Contêm metais pesados que contaminam o solo.</li>
+              <li>Nunca jogue no lixo comum ou reciclável normal.</li>
+              <li>Entregue em Ecopontos ou pontos de coleta específicos.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CARD: ÓLEO DE COZINHA -->
+        <article class="card-educacao overflow-hidden rounded-2xl bg-white shadow-md border border-terra-100">
+          <div class="h-44 bg-terra-100 flex items-center justify-center text-5xl">🫙</div>
+          <div class="p-6">
+            <h3 class="font-titulo text-xl font-semibold">Óleo de cozinha</h3>
+            <p class="mt-2 text-sm text-floresta-700">Restos de óleo de fritura usado no dia a dia.</p>
+            <ul class="mt-4 space-y-1 text-sm list-disc list-inside">
+              <li>Espere esfriar e armazene em garrafas PET bem fechadas.</li>
+              <li>Jamais despeje na pia ou no vaso sanitário (entope e polui).</li>
+              <li>Leve ao Ecoponto para virar sabão ou biodiesel.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CARD: VIDRO E METAL -->
+        <article class="card-educacao overflow-hidden rounded-2xl bg-white shadow-md border border-terra-100">
+          <div class="h-44 bg-terra-100 flex items-center justify-center text-5xl">🥫</div>
+          <div class="p-6">
+            <h3 class="font-titulo text-xl font-semibold">Vidros, papéis e metais</h3>
+            <p class="mt-2 text-sm text-floresta-700">Garrafas de vidro, latas de alumínio, ferro e caixas de papelão.</p>
+            <ul class="mt-4 space-y-1 text-sm list-disc list-inside">
+              <li>Embale vidros quebrados em jornal ou caixa para evitar acidentes.</li>
+              <li>Mantenha papéis e papelões secos e desmontados.</li>
+              <li>Latas e sucatas metálicas são 100% recicláveis.</li>
+            </ul>
+          </div>
+        </article>
         <!--
         ██████████████████████████████████████████████████████████████████
         ██  [ ADICIONE MAIS CARDS AQUI, copiando o modelo acima ]       ██
