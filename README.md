@@ -41,10 +41,16 @@ O EcoPontos resolve isso em duas frentes:
 | 📚 **Educação ambiental** | Cards com instruções de descarte para entulho, madeira, plásticos e outros materiais. |
 | 🗺️ **Mapa interativo** | Mapa com Leaflet + OpenStreetMap exibindo os Ecopontos salvos no banco de dados. |
 | 💬 **Popup informativo** | Nome, endereço, horário, materiais aceitos, tipo (Público/Privado) e **barra de volume preenchido** (verde, amarela ou vermelha). |
+| 🎨 **Pinos coloridos** | Cada pino já aparece na cor do volume (verde, amarelo ou vermelho), com legenda acima do mapa. |
+| 🔎 **Filtro por material** | Mostra só os Ecopontos que aceitam o material escolhido. |
+| 📍 **Mais perto de mim** | Usa a localização do navegador para apontar o Ecoponto mais próximo e a distância em linha reta. |
+| 🧭 **Como chegar** | O popup abre a rota até o Ecoponto no Google Maps. |
+| 📊 **Painel ao vivo** | O topo mostra total de Ecopontos, espaço livre médio e tipos de material, calculados a partir da API. |
 | 📝 **Cadastro colaborativo** | Formulário que envia os dados via `fetch` para a API em Python. O local é marcado com um clique no mapa. |
 | ♻️ **20 tipos de materiais** | Entulho, madeira, plástico, metal, vidro, papel e papelão, podas, eletrônicos, óleo de cozinha, pilhas e baterias, lâmpadas, pneus, móveis, colchões, roupas e têxteis, isopor, gesso, tintas e solventes, embalagens longa vida e eletrodomésticos. |
 | ✅ **Validação dupla** | Os dados são validados no servidor e o banco aplica regras (`CHECK`) de integridade. |
-| 📱 **Responsivo** | Layout adaptado para celular, tablet e desktop. |
+| 📱 **Responsivo** | Layout adaptado para celular, tablet e desktop, com menu próprio para telas pequenas. |
+| 🔧 **Como funciona** | Seção que explica o caminho do cadastro até o mapa e as tecnologias de cada etapa. |
 
 ---
 
@@ -266,10 +272,10 @@ No `static/script.js`, altere a constante `CENTRO_INICIAL` para a cidade do seu 
 
 ## 🔭 Ideias para o futuro
 
-- [ ] Busca por endereço no mapa (geocodificação)
-- [ ] Botão "Usar minha localização"
+- [x] Busca por endereço no mapa (geocodificação)
+- [x] Botão "Usar minha localização"
 - [ ] Painel para atualizar o volume preenchido de um Ecoponto
-- [ ] Filtro de Ecopontos por tipo de material
+- [x] Filtro de Ecopontos por tipo de material
 - [ ] Moderação de novos cadastros antes de aparecerem no mapa
 - [ ] Mais cards educativos (óleo, pilhas, eletrônicos, pneus)
 
